@@ -1,0 +1,15 @@
+yt-chat-v0813:
+  prompt_template: "yt-chat-v0813/prompt.txt"
+  fn_completions: "huggingface_local_completions" # (huggingface_local_completions, vllm_local_completions, openai_completions)
+  completions_kwargs:
+    model_name: "yt-chat-v0813"
+    requires_chatml: True
+    model_kwargs:
+      torch_dtype: "bfloat16"
+      trust_remote_code: True
+      tokenizer_mode: "auto"
+    max_new_tokens: 2048
+    temperature: 0.7
+    top_p: 1.0
+    do_sample: True
+  pretty_name: "Yutang Chat v0813"
