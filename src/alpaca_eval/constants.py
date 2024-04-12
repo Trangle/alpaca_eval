@@ -10,6 +10,10 @@ from huggingface_hub import hf_hub_download
 CURRENT_DIR = Path(__file__).parent
 BASE_DIR = Path(__file__).parents[2]
 
+# For local eval setting eg. /oss_data/llm_datas/eval/alpaca_eval
+LOCAL_ALPACA_EVAL_DIR = Path("/oss_data/llm_datas/eval/alpaca_eval")
+ALPACA_EVAL_PATH = os.environ.get("ALPACA_EVAL_PATH", LOCAL_ALPACA_EVAL_DIR.posix() if LOCAL_ALPACA_EVAL_DIR.exists() else "tatsu-lab/alpaca_eval")
+
 ### API specific ###
 API_MAX_CONCURRENCY = int(os.environ.get("API_MAX_CONCURRENCY", 5))
 
@@ -221,7 +225,7 @@ def ALPACAFARM_ALL_OUTPUTS():
         return [f"results/{m}/model_outputs.json" for m in MINIMAL_MODELS_FOR_NEW_LEADERBOARD]
     else:
         return datasets.load_dataset(
-            "tatsu-lab/alpaca_eval",
+            ALPACA_EVAL_PATH,
             "alpaca_eval_all_outputs",
             cache_dir=DEFAULT_CACHE_DIR,
             token=DATASETS_TOKEN,
