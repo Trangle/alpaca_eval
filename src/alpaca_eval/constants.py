@@ -7,8 +7,8 @@ from pathlib import Path
 import datasets
 from huggingface_hub import hf_hub_download
 
-CURRENT_DIR = Path(__file__).parent
-BASE_DIR = Path(__file__).parents[2]
+CURRENT_DIR = Path(__file__).parent.absolute()
+BASE_DIR = Path(__file__).parents[2].absolute()
 
 # For local eval setting eg. /oss_data/llm_datas/eval/alpaca_eval
 LOCAL_ALPACA_EVAL_DIR = Path("/oss_data/llm_datas/eval/alpaca_eval")
